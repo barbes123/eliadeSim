@@ -1,0 +1,42 @@
+to do 
+2. Add world as an object with default working parameters
+3. Made some unit standards and defaults, for length and angles
+4. Solve mother volume logic object for daughter
+5. Write code for muliple material (Al10%,Fe90%)
+6. Repair parsing code if second object is crap
+7. Write source 
+11. Add type of available histograms
+13. Add object dimensius when creating SFlux sufrace for the H2 histogramm
+14. Add space removing (    ) from the parser [ Edep] vs [Edep] 
+15. Solve multiple active volumes for one detector histograming and hits collections
+16. Solver multile runs histogram analysis manager clear 
+17. Find a proper way to calculate the average time for the hit
+18. Asociate one digitizer class to all the geometry objects with digital histogram type
+19. Think about better method for the digitizer problem as in when to add it to the object
+20. Better method to add two pulses 
+21. Write main 
+22. check and add the head of the clover detector inside dead layer
+23. solve clover overlap at the back of the detector and dead layer
+24. sort out the names of the different instances of the detector with the same name
+25. add digitizer number just for objects which presents - digital in histogram type
+26. Move build crystal out of the constructassembly function in order to speed up the proces, keep just the logicalvolumes outside
+27. Add active logic to already active objects ( DiagDetector or CloverDetector if(active)->Setactivevolumes with a default active value
+28. Build back side of the clover
+29. Add resolution for detectors DiagDetector and CloverDetector
+30. Write analysis for digitizer data
+31. Comment all the code
+32. Select moment when to create tbb vector for the digital objects not for all of them
+33. Clear AppsSD and AppsHit of garbage
+34. Solve segmentation fault if first object of the list is inactive
+36. Add proper warnings for all the possible errors with names and types 
+38. Add option save every 10000 particles / 1 hor
+39. Write part of code in charge of making multiple energy runs
+40. Change edep on monitor histograms in ESurf or something
+41. Add crystal spectra for the segmented clover
+42. Write time structure for beam 
+43. Control the number of cores
+44. Add reserve to tbb concurrent to speed up the process
+45. Ghost particles in between bunches
+46. Fix surface flux time problem from appshit 
+47. 
+
