@@ -13,7 +13,7 @@ set (CMAKE_CXX_STANDARD 11)
 # to build a batch mode only executable
 #
 
-set(Geant4_DIR "/home/eliade/geant4/geant4-v11.1.1-install/lib/cmake/Geant4/" CACHE PATH "/home/eliade/geant4/geant4-v11.1.1-install/lib/cmake/Geant4/")
+set(Geant4_DIR "" CACHE PATH "/home/serv4/Install/geant4.10.06.p02/environments/g4py/cmake/Modules")
 
 option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
 if(WITH_GEANT4_UIVIS)

@@ -15,6 +15,10 @@ track of all tags.
      * Reverse chronological order (last date on top), please *
      ----------------------------------------------------------
      
+06/03/24 V. Lelasseux (exampleApps-V11-01-00)
+- A lot of changes including output format set on ELIADE data format, addition of PuBe ...
+- Cleaning of the code and Git repository
+
 26/09/16 I. Hrivnacova (exampleApps-V10-02-01)
 - Updated for renaming G4Parameter in G4Accumulable
 
