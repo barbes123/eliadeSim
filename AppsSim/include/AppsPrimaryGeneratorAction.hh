@@ -36,6 +36,7 @@ public:
 	void GenerateSourceEvent(G4Event *anEvent); // generate a calibration source event
 	void GeneratePuBeEvent(G4Event *anEvent); // generate a calibration PuBe source event
 	void GenerateSimpleEvent(G4Event *anEvent); // generate a simple event
+	void GenerateMultipleEvent(G4Event *anEvent); // generate a multiple event
 	void GenerateSurfEvent(G4Event *anEvent);	// generate particle on a flat surface
 	void GenerateSpeckEvent(G4Event *anEvent);	// generate speckled particle on a flat surface
 	void GenerateFunctionEvent(G4Event *anEvent);

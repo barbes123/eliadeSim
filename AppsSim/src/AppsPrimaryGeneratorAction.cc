@@ -223,6 +223,26 @@ AppsPrimaryGeneratorAction::AppsPrimaryGeneratorAction()
 		GammaBandwidth = GammaBandwidthVector[0] * MeV;
 	}
 
+	if (BeamType == "multiple")
+	{
+
+		// retrive angular data for the source
+
+		PolarAngle = FInput->GetPolarAngle();
+		AzimuthalAngle = FInput->GetAzimuthalAngle();
+
+		// retrive the number of beam particles
+		BunchParticles = FInput->GetBunchParticles();
+
+		// retrive the beam energy vector, currently implemented for single energy
+		vector<G4double> GammaEnergyVector = FInput->GetGammaEnergy();
+		GammaEnergy = GammaEnergyVector[0] * MeV;
+
+		// retrive the beam bandwidth vector, currently implemented for single bandwidth
+		vector<G4double> GammaBandwidthVector = FInput->GetGammaBandwidth();
+		GammaBandwidth = GammaBandwidthVector[0] * MeV;
+	}
+
 	if (BeamType == "function")
 	{
 
@@ -377,6 +397,30 @@ void AppsPrimaryGeneratorAction::GenerateSimpleEvent(G4Event *anEvent)
 
 	// generate particle
 	fParticleGun->GeneratePrimaryVertex(anEvent);
+}
+
+void AppsPrimaryGeneratorAction::GenerateMultipleEvent(G4Event *anEvent)
+{
+
+	// set particle time
+	fParticleGun->SetParticleTime(GetParticleTime());
+
+	// set particle energy
+
+	fParticleGun->SetParticleEnergy(GetParticleEnergy());
+
+	// set particle position
+
+	fParticleGun->SetParticlePosition(sourcePos);
+
+	for (int i = 0; i < BunchParticles; i++){
+		// set particle momentum direction
+
+		fParticleGun->SetParticleMomentumDirection(GetParticleDirection());
+
+		// generate particle
+		fParticleGun->GeneratePrimaryVertex(anEvent);
+	}
 }
 
 void AppsPrimaryGeneratorAction::GenerateGBSEvent(G4Event *anEvent)
@@ -658,6 +702,11 @@ void AppsPrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 		GenerateSimpleEvent(anEvent);
 	}
 
+	if (BeamType == "multiple")
+	{
+		GenerateMultipleEvent(anEvent);
+	}
+
 	if (BeamType == "surf")
 	{
 		GenerateSurfEvent(anEvent);
@@ -684,7 +733,7 @@ G4ThreeVector AppsPrimaryGeneratorAction::GetParticleDirection()
 
 	G4ThreeVector ParticleDirection;
 
-	if (BeamType == "GBS" || BeamType == "simple" || BeamType == "surf" || BeamType == "speck" || BeamType == "function")
+	if (BeamType == "GBS" || BeamType == "simple" || BeamType == "multiple" || BeamType == "surf" || BeamType == "speck" || BeamType == "function")
 	{ // particle direction implemented for beam parameters
 
 		G4double MinTheta = PolarAngle[0];
@@ -731,7 +780,7 @@ G4double AppsPrimaryGeneratorAction::GetParticleEnergy()
 
 	AppsInput *FInput = AppsInput::Instance();
 
-	if (BeamType == "GBS" || BeamType == "simple" || BeamType == "surf" || BeamType == "speck")
+	if (BeamType == "GBS" || BeamType == "simple" || BeamType == "multiple" || BeamType == "surf" || BeamType == "speck")
 	{
 
 		partEnergy = G4RandGauss::shoot(GammaEnergy, GammaBandwidth);
@@ -824,7 +873,7 @@ G4double AppsPrimaryGeneratorAction::GetParticleTime()
 		return Time;
 	}
 
-	if (BeamType == "simple")
+	if (BeamType == "simple" || BeamType == "multiple")
 	{
 
 		// one event every 10 ms
